@@ -1,0 +1,42 @@
+/* html {
+
+}
+.padre p {
+    size: 30px;
+}
+
+.adentro p {
+    font-size: 0.5em;
+}
+
+.masadentro {
+    font-size: 3em;
+} */
+
+body {
+    margin: 0;
+}
+
+.padre {
+    width: 100vw;
+    height: 15vh;
+    background-color: #ff0000;
+}
+
+@media all and (max-width: 1200px) {
+    .padre {
+        background-color: #00ffff;
+    }
+}
+
+@media all and (max-width: 800px) {
+    .padre {
+        background-color: #808080;
+    }
+}
+
+@media all and (max-width: 400px) {
+    .padre {
+        background-color: #ffc0cb;
+    }
+}

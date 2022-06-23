@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    background-color: #141414;
+}
+
+.gradiant {
+    height: 80px;
+    background-image: linear-gradient(#000000, #141414);
+}
+
+.position {
+    position: relative;
+    width: 100%;
+    padding: 75px 0;
+    max-width: 950px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logo-image {
+    position: relative;
+    width: 90px;
+    height: auto;
+    left: 60px;
+    top: 20px;
+}
+
+h1 {
+    width: 100%;
+    font-weight: unset;
+    font-size: 3.5rem;
+}
+
+.font-type {
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: #ffffff;
+}
+
+.font-span {
+    color: gray;
+    text-align: center;
+}
+
+.profiles {
+    position: relative;
+    max-width: 80%;
+    margin: 0 auto;
+    border-radius: 20px;
+    top: 0;
+}
+
+.profile {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    background-color: #141414;
+    margin: 0 2vw 0 0;
+}
+
+li {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+
+.icon {
+    width: 100%;
+    height: 100%;
+    background-color: #141414;
+    border-radius: 10px;
+}
+
+.svg-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.profiles-button {
+    position: relative;
+    border: 1px solid grey;
+    background-color: transparent;
+    padding: 0.5em 1.5em;
+    letter-spacing: 2px;
+    margin-top: 10%;
+    color: gray;
+    font-size: 1.2rem;
+    width: 25%;
+    padding: 10px;
+}
