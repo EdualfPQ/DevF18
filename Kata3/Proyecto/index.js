@@ -25,10 +25,10 @@ apiRequest().then((response) => {
         popularDiv.appendChild(createDiv);
     }
 
-    const fila = document.querySelector('.contenedor-carousel');
+    const fila = document.querySelector('.carousel-container');
     const peliculas = document.querySelectorAll('.movie');
-    const flechaIzquierda = document.getElementById('flecha-izquierda');
-    const flechaDerecha = document.getElementById('flecha-derecha');
+    const flechaIzquierda = document.getElementById('left');
+    const flechaDerecha = document.getElementById('right');
 
     // ? ----- ----- Event Listener para la flecha derecha. ----- -----
     flechaDerecha.addEventListener('click', () => {
@@ -100,10 +100,10 @@ apiRequest().then((response) => {
 
 //         // Guardar la posición
 //         let posicion  = i
-//         // Calculando el espacio que debe DESPLAZARSE el contenedor
+//         // Calculando el espacio que debe DESPLAZARSE el container
 //         let operacion = posicion * -50
 
-//         // MOVEMOS el contenedor
+//         // MOVEMOS el container
 //         big.style.transform = `translateX(${ operacion }%)`
 //     })
 // })

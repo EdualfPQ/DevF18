@@ -66,7 +66,7 @@ body {
 	font-family: 'Open Sans', sans-serif;
 }
 
-.contenedor {
+.container {
 	width: 90%;
 	margin: auto;
 }
@@ -75,7 +75,7 @@ header {
 	padding: 30px 0;
 }
 
-header .contenedor {
+header .container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -99,92 +99,13 @@ header nav a.activo {
 	color: #FFF;
 }
 
-/* ---- ----- ----- Pelicula Principal ----- ----- ----- */
-.pelicula-principal {
-	font-size: 16px;
-	min-height: 40.62em;
-	color: #fff;
-	background: linear-gradient(rgba(0, 0, 0, .50) 0%, rgba(0,0,0,.50) 100%), url(../img/backdrop.jpg);
-	background-position: center center;
-	background-size: cover;
-	margin-bottom: 3.12em;
-	display: flex;
-	align-items: end;
-}
 
-.pelicula-principal .contenedor {
-	margin: 0 auto;
-	margin-bottom: 6.25em;
-}
-
-.pelicula-principal .titulo {
-	font-weight: 600;
-	font-size: 3.12em;
-	margin-bottom: 0.4em;
-}
-
-.pelicula-principal .descripcion {
-	font-weight: normal;
-	font-size: 1em;
-	line-height: 1.75em;
-	max-width: 50%;
-	margin-bottom: 1.25em;
-}
-
-.pelicula-principal .boton {
-	background: rgba(0,0,0, 0.5);
-	border: none;
-	border-radius: 0.31em;
-	padding: 0.93em 1.87em;
-	color: #fff;
-	margin-right: 1.25em;
-	cursor: pointer;
-	transition: .3s ease all;
-	font-size: 1.12em;
-}
-
-.pelicula-principal .boton:hover {
-	background: #fff;
-	color: #000;
-}
-
-.pelicula-principal .boton i {
-	margin-right: 1.25em;
-}
-
-/* ---- ----- ----- Contenedor Titulo y Controles ----- ----- ----- */
-.contenedor-titulo-controles {
-	display: flex;
-	justify-content: space-between;
-	align-items: end;
-}
-
-.contenedor-titulo-controles h3 {
-	color: #fff;
-	font-size: 30px;
-}
-
-.contenedor-titulo-controles .indicadores button {
-	background: #fff;
-	height: 3px;
-	width: 10px;
-	cursor: pointer;
-	border: none;
-	margin-right: 2px;
-}
-
-.contenedor-titulo-controles .indicadores button:hover,
-.contenedor-titulo-controles .indicadores button.activo {
-	background: red;
-}
-
-
-/* ---- ----- ----- Contenedor Principal y Flechas ----- ----- ----- */
-.peliculas-recomendadas {
+/* ---- ----- ----- container Principal y Flechas ----- ----- ----- */
+.popular {
 	margin-bottom: 70px;
 }
 
-.peliculas-recomendadas .contenedor-principal {
+.popular .main-cointainer {
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -195,8 +116,8 @@ header nav a.activo {
     align-items: center;
 }
 
-.peliculas-recomendadas .contenedor-principal .flecha-izquierda,
-.peliculas-recomendadas .contenedor-principal .flecha-derecha {
+.popular .main-cointainer .left,
+.popular .main-cointainer .right {
 	position: absolute;
 	border: none;
 	background: rgba(0,0,0,0.3);
@@ -211,45 +132,45 @@ header nav a.activo {
 	transition: .2s ease all;
 }
 
-.peliculas-recomendadas .contenedor-principal .flecha-izquierda:hover,
-.peliculas-recomendadas .contenedor-principal .flecha-derecha:hover {
+.popular .main-cointainer .left:hover,
+.popular .main-cointainer .right:hover {
 	background: rgba(0,0,0, .9);
 }
 
-.peliculas-recomendadas .contenedor-principal .flecha-izquierda {
+.popular .main-cointainer .left {
 	left: 0;
 }
 
-.peliculas-recomendadas .contenedor-principal .flecha-derecha {
+.popular .main-cointainer .right {
 	right: 0;
 }
 
 /* ---- ----- ----- Carousel ----- ----- ----- */
-.peliculas-recomendadas .contenedor-carousel {
+.popular .carousel-container {
 	width: 100%;
 	padding: 20px 0;
 	overflow: hidden;
 	scroll-behavior: smooth;
 }
 
-.peliculas-recomendadas .contenedor-carousel .carousel {
+.popular .carousel-container .carousel {
     width: 100%;
 	display: flex;
 	flex-wrap: nowrap;
 }
 
-.peliculas-recomendadas .contenedor-carousel .carousel .movie {
+.popular .carousel-container .carousel .movie {
 	min-width: 20%;
 	transition: .3s ease all;
 	box-shadow: 5px 5px 10px rgba(0,0,0, .3);
 }
 
-.peliculas-recomendadas .contenedor-carousel .carousel .movie.hover {
+.popular .carousel-container .carousel .movie.hover {
 	transform: scale(1.2);
 	transform-origin: center;
 }
 
-.peliculas-recomendadas .contenedor-carousel .carousel .movie img {
+.popular .carousel-container .carousel .movie img {
 	width: 100%;
 	vertical-align: top;
 }
