@@ -2,19 +2,29 @@
 let apiUrl = 'https://api.themoviedb.org/3/';
 let imgUrl = 'https://image.tmdb.org/t/p/original';
 let apiKey = '24091d786fad771efd80bf59c07d2a31';
-let languaje = 'es-MX';
+let lenguaje = 'es-MX';
+let popularRequest = `${apiUrl}movie/popular?api_key=${apiKey}&languaje=es-MX`;
+let genreRequest = `${apiUrl}genre/movie/list?api_key=${apiKey}&languaje=es-MX`;
 
- async function apiRequest(){
-    // Realizamos la peticion para obtener las peliculas mas populares
-    let response = await axios.get(`${apiUrl}movie/popular?api_key=${apiKey}&languaje=es-MX&page=1`);
+async function apiMovieRequest(request){
+    // Realizamos la peticion para obtener las peliculas
+    let response = await axios.get(request);
     // Obtenemos solo el arreglo con la informacion de las peliculas
-    let topMovies = response.data.results
-    topMovies.length = 15;
-   
-    return topMovies;
+    let result = response.data.results
+    result.length = 15;
+    return result;
 }
 
-apiRequest().then((response) => {
+async function apiGenreRequest(request){
+    // Realizamos la peticion para obtener los generos
+    let response = await axios.get(request);
+    // Obtenemos solo el arreglo con la informacion de las peliculas
+    let result = response.data.genres
+    return result
+}
+
+// Se realiza la peticion a la api para las peliculas mas populares
+apiMovieRequest(popularRequest).then((response) => {
     let popularDiv = document.getElementById('carousel');
     for(let movie of response){
         let createDiv = document.createElement('div');
@@ -28,84 +38,83 @@ apiRequest().then((response) => {
 
     const fila = document.querySelector('.carousel-container');
     const peliculas = document.querySelectorAll('.movie');
-    const flechaIzquierda = document.getElementById('left');
-    const flechaDerecha = document.getElementById('right');
+    const flechaIzquierda = document.getElementById('popular-left');
+    const flechaDerecha = document.getElementById('popular-right');
 
-    // ? ----- ----- Event Listener para la flecha derecha. ----- -----
+    // Event Listener para la flecha derecha.
     flechaDerecha.addEventListener('click', () => {
         fila.scrollLeft += fila.offsetWidth;
-
-        const indicadorActivo = document.querySelector('.indicadores .activo');
-        if(indicadorActivo.nextSibling){
-            indicadorActivo.nextSibling.classList.add('activo');
-            indicadorActivo.classList.remove('activo');
-        }
     });
 
-    // ? ----- ----- Event Listener para la flecha izquierda. ----- -----
+    // Event Listener para la flecha izquierda.
     flechaIzquierda.addEventListener('click', () => {
         fila.scrollLeft -= fila.offsetWidth;
-
-        const indicadorActivo = document.querySelector('.indicadores .activo');
-        if(indicadorActivo.previousSibling){
-            indicadorActivo.previousSibling.classList.add('activo');
-            indicadorActivo.classList.remove('activo');
-        }
-    });
-
-    // ? ----- ----- Paginacion ----- -----
-    const numeroPaginas = Math.ceil(peliculas.length / 5);
-    for(let i = 0; i < numeroPaginas; i++){
-        const indicador = document.createElement('button');
-
-        if(i === 0){
-            indicador.classList.add('activo');
-        }
-
-        document.querySelector('.indicadores').appendChild(indicador);
-        indicador.addEventListener('click', (e) => {
-            fila.scrollLeft = i * fila.offsetWidth;
-
-            document.querySelector('.indicadores .activo').classList.remove('activo');
-            e.target.classList.add('activo');
-        });
-    }
-
-    // ? ----- ----- Hover ----- -----
-    peliculas.forEach((pelicula) => {
-        pelicula.addEventListener('mouseenter', (e) => {
-            const elemento = e.currentTarget;
-            setTimeout(() => {
-                peliculas.forEach(pelicula => pelicula.classList.remove('hover'));
-                elemento.classList.add('hover');
-            }, 300);
-        });
-    });
-
-    fila.addEventListener('mouseleave', () => {
-        peliculas.forEach(pelicula => pelicula.classList.remove('hover'));
     });
 });
 
-// const big = document.querySelector('.big')
-// const button = document.querySelectorAll('.button')
+apiGenreRequest(genreRequest).then((response) =>{
+    var movies;
+    // Obtenemos el arreglo de generos
+    let genres = response;
+    // Recorremos nuestro arreglo generos para la busqueda de listas
+    for(let genre of genres){
+        // Hacemos la peticion por genero
+        let request = `${apiUrl}discover/movie?api_key=${apiKey}&language=es-MX&sort_by=popularity.desc&with_genres=${genre.id}`;
+        // Obtenemos el elemento (div) en el que se insertaran los cambios
+        const containerDiv = document.getElementById('container');
+        // Creamos el div para el titulo de los carruseles
+        const tittleDiv = document.createElement('h3');
+        tittleDiv.innerHTML = `Peliculas del genero ${genre.name}`;
+        containerDiv.appendChild(tittleDiv);
+        // Creamos el div que contendra el nuevo carrusel
+        const createDivContainer = document.createElement('div');
+        createDivContainer.classList.add('main-cointainer')
+        // Creamos el elemento (boton izq) para el movimiento izquierdo del carrusel
+        const createButtonLeft = document.createElement('button');
+        createButtonLeft.setAttribute('role', 'button');
+        createButtonLeft.setAttribute('id', `${genre.name}-arrow-left`);
+        createButtonLeft.classList.add('left');
+        createDivContainer.appendChild(createButtonLeft);
+        // Creamos el elemento para el carrusel
+        const createDivCarousel = document.createElement('div');
+        createDivCarousel.setAttribute('id',`${genre.name}-carousel`)
+        createDivCarousel.classList.add('carousel-container');
+        const createCarousel = document.createElement('div');
+        createCarousel.setAttribute('id', `${genre.name}-carousel`);
+        createCarousel.classList.add('carousel');
+        apiMovieRequest(request).then((response) => {
+            for(let movie of response){
+                let createDiv = document.createElement('div');
+                createDiv.classList.add('movie');
+                let urlAboutMovie= `aboutMovie/aboutmovie.html?id=${movie.id}`
+                createDiv.innerHTML = `
+                    <a href=${urlAboutMovie}><img src='${imgUrl}${movie.poster_path}' alt=''></a>
+                `
+                createCarousel.appendChild(createDiv);
+            }
+        })
+        createDivCarousel.appendChild(createCarousel);
+        createDivContainer.appendChild(createDivCarousel);
+        containerDiv.appendChild(createDivContainer);
+        // Creamos el elemento (boton der) para el movimiento izquierdo del carrusel
+        const createButtonRight = document.createElement('button');
+        createButtonRight.setAttribute('role', 'button');
+        createButtonRight.setAttribute('id', `${genre.name}-arrow-right`);
+        createButtonRight.classList.add('right');
+        createDivContainer.appendChild(createButtonRight);
 
-// // Cuando CLICK en punto
-//     // Saber la posición de ese punto
-//     // Aplicar un transform translateX al grande
+        const fila = document.getElementById(`${genre.name}-carousel`);
+        const flechaIzquierda = document.getElementById(`${genre.name}-arrow-left`);
+        const flechaDerecha = document.getElementById(`${genre.name}-arrow-right`);
 
-// // Recorrer TODOS los botones
-// button.forEach( ( cadaBoton , i )=> {
-//     // Asignamos el evento CLICK a los botones
-//     button[i].addEventListener('click',()=>{
+        // Event Listener para la flecha derecha.
+        flechaDerecha.addEventListener('click', () => {
+            fila.scrollLeft += fila.offsetWidth;
+        });
 
-//         // Guardar la posición
-//         let posicion  = i
-//         // Calculando el espacio que debe DESPLAZARSE el container
-//         let operacion = posicion * -50
-
-//         // MOVEMOS el container
-//         big.style.transform = `translateX(${ operacion }%)`
-//     })
-// })
-
+        // Event Listener para la flecha izquierda.
+        flechaIzquierda.addEventListener('click', () => {
+            fila.scrollLeft -= fila.offsetWidth;
+        });
+    }
+})

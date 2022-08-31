@@ -165,7 +165,7 @@ header nav a.activo {
 	box-shadow: 5px 5px 10px rgba(0,0,0, .3);
 }
 
-.popular .carousel-container .carousel .movie.hover {
+.popular .carousel-container .carousel .movie:hover {
 	transform: scale(1.2);
 	transform-origin: center;
 }
