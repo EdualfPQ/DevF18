@@ -19,8 +19,9 @@ apiRequest().then((response) => {
     for(let movie of response){
         let createDiv = document.createElement('div');
         createDiv.classList.add('movie');
+        let urlAboutMovie= `aboutMovie/aboutmovie.html?id=${movie.id}`
         createDiv.innerHTML = `
-            <a href='#'><img src='${imgUrl}${movie.poster_path}' alt=''></a>
+            <a href=${urlAboutMovie}><img src='${imgUrl}${movie.poster_path}' alt=''></a>
         `
         popularDiv.appendChild(createDiv);
     }
