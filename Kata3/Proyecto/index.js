@@ -145,7 +145,5 @@ async function pintarGenerales(){
     })
 }
 
-
-
 pintarPopulares();
 pintarGenerales();
