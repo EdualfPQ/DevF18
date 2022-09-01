@@ -6,6 +6,28 @@ let lenguaje = 'es-MX';
 let popularRequest = `${apiUrl}movie/popular?api_key=${apiKey}&languaje=es-MX`;
 let genreRequest = `${apiUrl}genre/movie/list?api_key=${apiKey}&languaje=es-MX`;
 let moviesArray = [];
+var searchIcon = document.getElementsByClassName("search-box__icon")[0];
+var searchBox = document.getElementsByClassName("search-box")[0];
+searchIcon.addEventListener("click", activateSearch);
+searchBox.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        searchMovie(event.target.value)
+    }
+});
+init();
+function activateSearch() {  
+    searchBox.classList.toggle("active");
+}
+
+function searchMovie(name){
+    let busqueda=moviesArray.filter(movies =>movies.title.toUpperCase() == name.toUpperCase());
+    if(busqueda.length>0){
+        alert('La pelicula si se encuentra en el catalogo');
+    }else{
+        alert('La pelicula no se encuentra en el catalogo');
+    }
+    
+}
 
 async function apiMovieRequest(request){
     // Realizamos la peticion para obtener las peliculas
@@ -145,5 +167,9 @@ async function pintarGenerales(){
     })
 }
 
-pintarPopulares();
-pintarGenerales();
+
+async function init(){
+    await pintarPopulares();
+    await pintarGenerales();
+}
+
