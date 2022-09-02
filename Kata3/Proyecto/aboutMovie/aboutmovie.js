@@ -5,11 +5,12 @@ var API_KEY='dc218bef31b94aab191090c157f2930d';
 
 searchIcon.addEventListener("click", activateSearch);
 init();
+// Animacion boton de busqueda
 function activateSearch() {  
   searchBox.classList.toggle("active");
 }
 
-
+//Generacion de la pagina
 function init(){
     const parsedUrl = new URL(window.location.href);
     var id =parsedUrl.searchParams.get("id"); 
@@ -17,6 +18,7 @@ function init(){
     castMovie(id);
     genresMovie(id);
 }
+// Informacion sobre la pelicula
 async function aboutMovie(id){
     let getParentElement = document.getElementById('aboutMovie');
     let movieInfo;
@@ -26,9 +28,7 @@ async function aboutMovie(id){
         }
         ).catch(error => console.log(error));
 
-    
     const createSection = document.createElement('section')
-
      let urlimagen = `https://image.tmdb.org/t/p/w300${movieInfo.poster_path}`;
       //<section class="product"> </section>
      createSection.innerHTML = `
@@ -38,7 +38,7 @@ async function aboutMovie(id){
          `
      getParentElement.appendChild(createSection);
 }
-
+// Informacion sobre los actores
 async function castMovie(id){
     let getParentElement = document.getElementById('sections');
     let castArray;
@@ -65,6 +65,7 @@ async function castMovie(id){
     }
     getParentElement.appendChild(createSection);
 }
+// Informacion sobre los generos de la pelicula
 async function genresMovie(id){
     let generos;
     await getMovie(id).then(genres =>
@@ -85,7 +86,7 @@ async function genresMovie(id){
     }
     getParentElement.appendChild(createSection); 
 }
-
+//Peticion para obtener la informacion de la pelicula
 async function getMovie(id) {
      let url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=es`;
     
@@ -97,7 +98,7 @@ async function getMovie(id) {
         return []
     }
 }
-
+//Peticion para obtener los actores
 async function getCast(id) {
     let url = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}&language=es`;
    
