@@ -5,10 +5,11 @@ var API_KEY='dc218bef31b94aab191090c157f2930d';
 
 searchIcon.addEventListener("click", activateSearch);
 init();
+//Animacion Del boton buscar
 function activateSearch() {  
   searchBox.classList.toggle("active");
 }
-
+//Generacion de la pagina
 function init(){
     const parsedUrl = new URL(window.location.href);
     let id =parsedUrl.searchParams.get("id");
@@ -16,6 +17,7 @@ function init(){
     listMovies(id);
     
 }
+//Generacion Lista De Las Peliculas
 async function listMovies(id){
   let moviesArray;
   let getParentElement = document.getElementById('carruseles');
@@ -50,6 +52,8 @@ async function listMovies(id){
     }
 
 }
+
+// Nombre del Actor
 async function aboutActor(id){
   let name;
   await getDetailsActor(id).then(actor =>
@@ -65,18 +69,18 @@ async function aboutActor(id){
   
 
 }
-
+ // Peticion para obtener las peliculas
 async function getMovies(id) {
   let url = `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${API_KEY}&language=es`;
  
- try {
-     let response = await axios.get(url); 
-     return response.data
- } catch (e) {
-     return []
- }
+  try {
+    let response = await axios.get(url); 
+    return response.data;
+  } catch (e) {
+    return [];
+  }
 }
-
+//Peticion para obtener los detalles del actor
 async function getDetailsActor(id){
   let url = `https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}&language=es`;
   try {
@@ -84,5 +88,5 @@ async function getDetailsActor(id){
     return response.data;
   } catch (e) {
     return [];
-}
+  }
 }
