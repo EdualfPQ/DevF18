@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    text-align: left;
+}
+
+.span-size {
+    padding-inline: 10px;
+    padding-block: 5px;
+    border-radius: 15px;
+    margin-right: 3px;
+}
+
+/* Colores types */
+.normal{
+    background-color:grey;
+}
+.fighting{
+    background-color:chocolate ;
+}
+.flying{
+    background-color: steelblue;
+}
+.poison{
+    background-color: mediumslateblue;
+}
+.ground{
+   background-color:peru;
+}
+.rock{
+    background-color: brown;
+}
+.bug{
+    background-color: green;
+}
+.ghost{
+    background-color: darkblue;
+}
+.steel{
+    background-color: cadetblue;
+}
+.fire{
+    background-color: tomato;
+}
+.water{
+    background-color: cornflowerblue;
+}
+.grass {
+    background-color: green;
+}
+.electric{
+    background-color: yellow;
+}
+.psychic{
+    background-color: violet;
+  }
+.ice{
+    background-color:lightblue;
+}
+.dragon{
+    background-color:darkcyan;
+}
+.dark{
+    background-color:darkslategrey;
+}
+.fairy{
+    background-color: indianred;
+}
+.pokemonbg{
+    background-color: rgb(236, 236, 236);
+    width: 100%;
+}

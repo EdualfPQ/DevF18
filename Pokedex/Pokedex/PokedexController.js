@@ -5,7 +5,6 @@ var nextUrl = '';
 function CargaPokemons(url){
     let arrayPokemons = servicio.consultarPokemons(url)
          .then((result)=>{
-            console.log(result.data.next);
             nextUrl = result.data.next;
             let array = result.data.results.map((element) => servicio.consultarPokemonPorUrl(element.url))
             Promise.all(array).then((response) => {
@@ -18,7 +17,6 @@ function CargaPokemons(url){
 }
 
 function añadirPokemons(pokemon){
-    console.log(pokemon)
     //Obtenemos el contenedor de la pokedex
     const contenedor = document.getElementById('contenedor');
 
@@ -31,7 +29,7 @@ function añadirPokemons(pokemon){
     const img = document.createElement('img');
     a.href = `PokemonDetails/PokemonDetailsView.html?id=${pokemon.id}`;
     img.classList.add('card-img-top', 'pokemonbg');
-    img.src = pokemon.sprites.front_default;
+    img.src = pokemon.sprites.other["official-artwork"].front_default;
     // img.addEventListener('click', function (e) {
     //     window.location.href = `PokemonDetailsView?id=${pokemon.id}`;
     // })
